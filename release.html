@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../JS/jquery/jquery_min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .comments_section {
+            position: relative;
+            width: 500px;
+            margin: 300px auto;
+            border: 1px solid #cccccc;
+        }
+        .text {
+            margin-left: 12px;
+            width: 470px;
+            height: 150px;
+            outline-style: none;
+            margin-bottom: 30px;
+        }
+        .release {
+            position: absolute;
+            right: 15px;
+            top: 190px;
+        }
+        span {
+            display: block;
+            margin: 5px 0 5px 20px;
+        }
+        ul {
+            width: 300px;  
+            margin-left: 60px;
+        }
+        ul li {
+            display: none;
+            list-style: none;
+            padding: 0 10px;
+            font-weight: 100;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 1px solid rgba(77, 77, 77, 0.1);
+        }
+        ul li a {
+            position: absolute;
+            right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="comments_section">
+        <span>微博发布</span>
+        <textarea name="" class="text" cols="30" rows="10"></textarea>
+        <button class="release">
+            发布
+        </button>
+        <ul>
+            
+        </ul>
+    </div>
+    <script>
+        $(function() {
+            $(".release").on("click",Release);
+            function Release() {
+                var li = $("<li></li>");
+                li.html($(".text").val() + '<a href="javascript:;" class="delete">删除</a>');
+                $("ul").prepend(li);
+                li.slideDown();
+                $("textarea").val("");
+            }
+            $("ul").on("click",".delete",Delete);
+            function Delete() {
+                $(this).parent().slideUp(Remove);
+                function Remove() {
+                    $(this).remove();
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>

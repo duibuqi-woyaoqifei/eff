@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="animate.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .w {
+            position: relative;
+            margin: auto;
+            margin-top: 200px;
+            height: 508px;
+            width: 903px;
+            overflow: hidden;
+        }
+
+        .ps {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1000%;
+            height: 508px;
+        }
+
+        .ps li {
+            float: left;
+            list-style: none;
+            height: 508px;
+        }
+
+        img {
+            float: left;
+            height: 508px;
+            width: 903px;
+        }
+
+        .point_box {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .point_box ul li {
+            float: left;
+            list-style: none;
+            margin: 5px 5px;
+        }
+
+        .point_box ul li a {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: rgba(248, 162, 91, 0.3);
+        }
+
+        .point_box ul li .flash {
+            background-color: rgba(248, 162, 91, 0.6) !important;
+        }
+
+        .left_img,
+        .right_img {
+            position: absolute;
+            top: 239px;
+            height: 30px;
+            width: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .left_img {
+            text-indent: -4px;
+            left: 0;
+            z-index: 9999;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .right_img {
+            text-indent: 4px;
+            right: 0;
+            z-index: 9999;
+            border-radius: 15px 0 0 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w">
+        <a href="javascript:;" class="left_img">&lt;</a>
+        <ul class="ps">
+            <li><img src="images/11.jpg" alt=""></li>
+            <li><img src="images/10.jpg" alt=""></li>
+            <li><img src="images/7.jpg" alt=""></li>
+            <li><img src="images/9.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/6.jpg" alt=""></li>
+        </ul>
+        <a href="javascript:;" class="right_img">&gt;</a>
+        <div class="point_box">
+            <ul>
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        var ul = document.querySelector('.ps');
+        var w = document.querySelector('.w');
+        var point_box = document.querySelector('.point_box');
+        var point_ul = point_box.querySelector('ul');
+        var first_img = ul.children[0].cloneNode(true);
+        ul.appendChild(first_img);
+        var imgs = document.querySelectorAll('img');
+        for (i = 0; i < imgs.length - 1; i++) {
+            var li = document.createElement('li');
+            li.innerHTML = '<a href="javascript:;"></a>';
+            point_ul.appendChild(li);
+        }
+        point_box.style.left = (w.offsetWidth - point_box.offsetWidth) / 2 + 'px';
+
+        var as = point_ul.querySelectorAll('a');
+        for (i = 0; i < as.length; i++) {
+            as[i].setAttribute('data-index', i);
+        }
+        as[0].className = 'flash';
+
+        var ison = 0;
+        for (i = 0; i < as.length; i++) {
+            as[i].addEventListener('mouseover', PointSE);
+            function PointSE(e) {
+                ison = 1;
+                for (i = 0; i < as.length; i++) {
+                    as[i].className = '';
+                }
+                this.className = 'flash';
+                var index = this.getAttribute('data-index');
+                animate(ul, -imgs[0].offsetWidth * index);
+
+            }
+            as[i].addEventListener('mouseout', RemoveStay);
+            function RemoveStay() {
+                ison = 0;
+            }
+        }
+
+        var left_img = document.querySelector('.left_img');
+        var right_img = document.querySelector('.right_img');
+        left_img.addEventListener('mouseover', TabSE);
+        right_img.addEventListener('mouseover', TabSE);
+        function TabSE() {
+            this.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+            this.addEventListener('mouseout', huifu);
+            function huifu() {
+                this.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            }
+        }
+
+        left_img.addEventListener('click', LastImg);
+        right_img.addEventListener('click', NextImg);
+        function NextImg(e) {
+            var index = Math.ceil(Math.abs(ul.offsetLeft / imgs[0].offsetWidth));
+            console.log(index);
+            for (i = 0; i < as.length; i++) {
+                as[i].className = '';
+            }
+            if (index == imgs.length - 2) {
+                as[0].className = 'flash'
+                animate(ul, -imgs[0].offsetWidth * (index + 1));
+            } else if (index == imgs.length - 1) {
+                index = 0;
+                as[index + 1].className = 'flash';
+                ul.style.left = 0;
+                animate(ul, -imgs[0].offsetWidth * (index + 1));
+            } else {
+                as[index + 1].className = 'flash';
+                animate(ul, -imgs[0].offsetWidth * (index + 1));
+            }
+
+        }
+        function LastImg() {
+            var index = Math.ceil(Math.abs(ul.offsetLeft / imgs[0].offsetWidth));
+            for (i = 0; i < as.length; i++) {
+                as[i].className = '';
+            }
+            if (index == 0) {
+                ul.style.left = -imgs[0].offsetWidth * (imgs.length - 1) + 'px';
+                index = imgs.length - 1;
+                as[index - 1].className = 'flash';
+                animate(ul, -imgs[0].offsetWidth * (index - 1));
+            } else {
+                as[index - 1].className = 'flash';
+                animate(ul, -imgs[0].offsetWidth * (index - 1));
+            }
+
+        }
+
+        var timer = setInterval(AutoPlay,3000);
+        function AutoPlay(e) {
+            if (!ison) {
+                right_img.click();
+            }
+        }
+    </script>
+</body>
+
+</html>

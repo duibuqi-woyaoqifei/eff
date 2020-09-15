@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>发送短信</button>
+    <script>
+        var btn = document.querySelector('button');
+        var time = 3;
+        btn.onclick = function() {
+            fn()
+            this.disabled = true;
+            this.innerHTML = '还剩下3秒';
+            var timer = setInterval(fn,1000);
+            function fn() {
+                if (time > 0) {
+                    btn.innerHTML = '还剩下' + time + '秒';
+                    time -= 1;
+                } else {
+                    clearInterval(timer);
+                    btn.innerHTML = '发送';
+                    btn.disabled = false;
+                }
+
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

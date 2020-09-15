@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fix {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #cccccc;
+        }
+
+        .fix img {
+            width: 100%;
+            cursor: move;
+        }
+
+        .fix .box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(245, 230, 20, 0.3);
+            cursor: move;
+        }
+
+        .big {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 510px;
+            width: 600px;
+            height: 600px;
+            background: url(move_img/images/sad_girl.jpg) no-repeat;
+            z-index: 999;
+            background-position-x: 0;
+            background-position-y: 0;
+            background-size: 2000px 1124px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fix">
+        <img src="move_img/images/sad_girl.jpg" alt="">
+        <div class="box">
+
+        </div>
+    </div>
+    <div class="big"></div>
+    <script>
+        var img = document.querySelector('img');
+        var box = document.querySelector('.box');
+        var big = document.querySelector('.big');
+
+        img.addEventListener('mouseover', dingwei);
+        function dingwei(e) {
+            box.style.display = 'block';
+            big.style.display = 'block';
+            var x = e.pageX
+            var y = e.pageY
+            box.style.top = y - 75 + 'px';
+            box.style.left = x - 75 + 'px';
+        }
+
+        box.addEventListener('mousemove', yidong);
+        function yidong(e) {
+            var x = e.pageX
+            var y = e.pageY
+            console.log(x + ',' + y)
+            if (x > 425) {
+                x = 425
+            }
+            if (x < 75) {
+                x = 75
+            }
+            if (y > img.offsetHeight - 75) {
+                y = img.offsetHeight - 75
+            }
+            if (y < 75) {
+                y = 75
+            }
+            console.log(x + ',' + y)
+            box.style.top = y - 75 + 'px';
+            box.style.left = x - 75 + 'px';
+            big.style.backgroundPositionX = -((x - 75) * 4) + 'px';
+            big.style.backgroundPositionY = -((y - 75) * 4) + 'px';
+            
+        }
+
+        box.addEventListener('mouseout', likai);
+        function likai(e) {
+            box.style.display = 'none';
+            big.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

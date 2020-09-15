@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3)
+        }
+
+        .w {
+            float: left;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            top: 10px;
+        }
+
+        .w .into_login {
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .bg .login {
+            position: relative;
+            top: 250px;
+            left: 700px;
+            width: 500px;
+            height: 300px;
+            background-color: #fff;
+        }
+
+        .bg .login .h {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            padding-top: 30px;
+            margin: 0 auto;
+            width: 400px;
+            cursor: move;
+        }
+
+        .uname,
+        .password {
+            float: right;
+            margin-right: 45px;
+            margin-top: 30px;
+        }
+
+        input {
+            width: 340px;
+            height: 25px;
+            color: #ccc;
+        }
+
+        .login_button {
+            position: absolute;
+            top: 205px;
+            left: 100px;
+            width: 300px;
+            height: 50px;
+            border: 1px solid #cccccc;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .login_button a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .login .close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 26px;
+            height: 26px;
+            border-radius: 13px;
+            text-align: center;
+            line-height: 25px;
+            background-color: #fff;
+            font-size: 20px;
+        }
+
+        .login .close a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, .3);
+        }
+
+        .login {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w"><a href="javascript:;" class="into_login">点击弹出登录界面</a></div>
+    <div class="bg">
+        <div class="login">
+            <div class="h">登录会员</div>
+            <div class="uname">用户名：
+                <input type="text" value="请输入用户名">
+            </div>
+            <div class="password">登录密码：
+                <input type="text" name="" id="" value="请输入密码">
+            </div>
+            <div class="login_button">
+                <a href="javascrip:;">登录会员</a>
+            </div>
+            <div class="close"><a href="javascrip:;">×</a></div>
+        </div>
+    </div>
+    <script>
+        var bg = document.querySelector('.bg');
+        var login = document.querySelector('.login');
+        var into_login = document.querySelector('.into_login');
+        var xx = document.querySelector('.close');
+        var uname = document.querySelector('.uname');
+        var pd = document.querySelector('.password');
+        var h = document.querySelector('.h');
+
+        into_login.addEventListener('click', fn);
+        function fn() {
+            bg.style.display = 'block';
+            login.style.display = 'block';
+            xx.addEventListener('click', guanbi);
+            function guanbi() {
+                bg.style.display = 'none';
+                login.style.display = 'none';
+            }
+            uname.children[0].addEventListener('focus',shuru);
+            pd.children[0].addEventListener('focus',shuru)
+            function shuru() {
+                this.value = ''
+            }
+            h.addEventListener('mousedown',dingwei);
+            function dingwei(e) {
+                var x = e.pageX - login.offsetLeft;
+                var y = e.pageY - login.offsetTop;
+                document.addEventListener('mousemove',yidong);
+                function yidong(e) {
+                    login.style.left = e.pageX - x + 'px';
+                    login.style.top = e.pageY - y + 'px';
+                    document.addEventListener('mouseup',yichu);
+                    function yichu() {
+                        document.removeEventListener('mousemove',yidong);
+                    }
+                }
+            }
+        }
+
+        var login_button = document.querySelector('.login_button');
+        login_button.children[0].addEventListener('click',Warning);
+        function Warning() {
+            alert('抱歉，网站开发中。。。');
+        }
+
+    </script>
+</body>
+
+</html>
