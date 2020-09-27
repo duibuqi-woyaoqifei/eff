@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            width: 750px;
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            transition: 1s;
+        }
+        img {
+            position: relative;
+            width: 250px;
+            height: 135px;
+            transform: scale(1);
+            transition: .6s;
+            z-index: 0;
+        }
+        main:hover div img{
+            filter: blur(15px);
+            transform: scale(.6);
+        }
+        main div img:hover {
+            transform: scale(3);
+            filter: none;
+            z-index: 999;
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+        <div><img src="" alt=""></div>
+    </main>
+</body>
+</html>
