@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #34495e;
+        }
+
+        ul {
+            width: 300px;
+            height: 300px;
+
+        }
+
+        ul li {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            transform-origin: 150px 150px;
+            transition: 1s;
+        }
+
+        ul li span {
+            transition: 1s;
+        }
+
+        ul:hover li:nth-child(1) {
+            transform: rotateZ(40deg);
+        }
+
+        ul:hover li:nth-child(2) {
+            transform: rotateZ(80deg);
+        }
+
+        ul:hover li:nth-child(3) {
+            transform: rotateZ(120deg);
+        }
+
+        ul:hover li:nth-child(4) {
+            transform: rotateZ(160deg);
+        }
+
+        ul:hover li:nth-child(5) {
+            transform: rotateZ(200deg);
+        }
+
+        ul:hover li:nth-child(6) {
+            transform: rotateZ(240deg);
+        }
+
+        ul:hover li:nth-child(7) {
+            transform: rotateZ(280deg);
+        }
+
+        ul:hover li:nth-child(8) {
+            transform: rotateZ(320deg);
+        }
+
+        ul:hover li:nth-child(9) {
+            transform: rotateZ(360deg);
+        }
+
+        ul:hover li:nth-child(1) span {
+            transform: rotateZ(-40deg);
+        }
+
+        ul:hover li:nth-child(2) span {
+            transform: rotateZ(-80deg);
+        }
+
+        ul:hover li:nth-child(3) span {
+            transform: rotateZ(-120deg);
+        }
+
+        ul:hover li:nth-child(4) span {
+            transform: rotateZ(-160deg);
+        }
+
+        ul:hover li:nth-child(5) span {
+            transform: rotateZ(-200deg);
+        }
+
+        ul:hover li:nth-child(6) span {
+            transform: rotateZ(-240deg);
+        }
+
+        ul:hover li:nth-child(7) span {
+            transform: rotateZ(-280deg);
+        }
+
+        ul:hover li:nth-child(8) span {
+            transform: rotateZ(-320deg);
+        }
+
+        ul:hover li:nth-child(9) span {
+            transform: rotateZ(-360deg);
+        }
+
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 2004633 */
+            src: url('font/iconfont.eot');
+            src: url('font/iconfont.eot') format('embedded-opentype'),
+                url('font/iconfont.woff2') format('woff2'),
+                url('font/iconfont.woff') format('woff'),
+                url('font/iconfont.ttf') format('truetype'),
+                url('font/iconfont.svg') format('svg');
+            font-display: block;
+        }
+        span {
+            font-family: 'iconfont';
+            
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><span>&#xe602;</span></li>
+        <li><span>&#xe603;</span></li>
+        <li><span>&#xe8bb;</span></li>
+        <li><span>&#xe8ad;</span></li>
+        <li><span>&#xe8b5;</span></li>
+        <li><span>&#xe8b8;</span></li>
+        <li><span>&#xe8ae;</span></li>
+        <li><span>&#xe8b0;</span></li>
+        <li><span>&#xe8b6;</span></li>
+    </ul>
+</body>
+
+</html>
